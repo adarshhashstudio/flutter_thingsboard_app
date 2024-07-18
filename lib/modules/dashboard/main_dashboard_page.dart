@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/context/tb_context_widget.dart';
-import 'package:thingsboard_app/locator.dart';
 import 'package:thingsboard_app/modules/dashboard/dashboard.dart';
-import 'package:thingsboard_app/utils/services/endpoint/i_endpoint_service.dart';
 import 'package:thingsboard_app/widgets/tb_app_bar.dart';
 
 class MainDashboardPageController {
@@ -94,70 +92,58 @@ class _MainDashboardPageState extends TbContextState<MainDashboardPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TbAppBar(
-        tbContext,
-        leading: BackButton(onPressed: maybePop),
-        showLoadingIndicator: false,
-        elevation: 1,
-        shadowColor: Colors.transparent,
-        title: ValueListenableBuilder<String>(
-          valueListenable: dashboardTitleValue,
-          builder: (context, title, widget) {
-            return FittedBox(
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.centerLeft,
-              child: Text(title),
-            );
-          },
-        ),
-        actions: [
-          ValueListenableBuilder<bool>(
-            valueListenable: hasRightLayout,
-            builder: (context, _hasRightLayout, widget) {
-              if (_hasRightLayout) {
-                return IconButton(
-                  onPressed: () => _dashboardController?.toggleRightLayout(),
-                  icon: AnimatedIcon(
-                    progress: rightLayoutMenuAnimation,
-                    icon: AnimatedIcons.menu_close,
-                  ),
-                );
-              } else {
-                return const SizedBox.shrink();
-              }
+        appBar: TbAppBar(
+          tbContext,
+          leading: BackButton(onPressed: () {
+            maybePop();
+          }),
+          showLoadingIndicator: false,
+          elevation: 1,
+          shadowColor: Colors.transparent,
+          title: ValueListenableBuilder<String>(
+            valueListenable: dashboardTitleValue,
+            builder: (context, title, widget) {
+              return FittedBox(
+                  fit: BoxFit.fitWidth,
+                  alignment: Alignment.centerLeft,
+                  child: Text(title));
             },
-          )
-        ],
-      ),
-      body: ValueListenableBuilder<String?>(
-        valueListenable: getIt<IEndpointService>().listenEndpointChanges,
-        builder: (context, value, _) {
-          return Dashboard(
-            tbContext,
-            key: UniqueKey(),
-            activeByDefault: false,
-            titleCallback: (title) {
-              dashboardTitleValue.value = title;
-            },
-            controllerCallback: (controller) {
-              _dashboardController = controller;
-              if (widget._controller != null) {
-                widget._controller!._setDashboardController(controller);
-                controller.hasRightLayout.addListener(() {
-                  hasRightLayout.value = controller.hasRightLayout.value;
-                });
-                controller.rightLayoutOpened.addListener(() {
-                  if (controller.rightLayoutOpened.value) {
-                    rightLayoutMenuController.forward();
+          ),
+          actions: [
+            ValueListenableBuilder<bool>(
+                valueListenable: hasRightLayout,
+                builder: (context, _hasRightLayout, widget) {
+                  if (_hasRightLayout) {
+                    return IconButton(
+                        onPressed: () =>
+                            _dashboardController?.toggleRightLayout(),
+                        icon: AnimatedIcon(
+                            progress: rightLayoutMenuAnimation,
+                            icon: AnimatedIcons.menu_close));
                   } else {
-                    rightLayoutMenuController.reverse();
+                    return SizedBox.shrink();
                   }
-                });
+                })
+          ],
+        ),
+        body: Dashboard(tbContext, activeByDefault: false,
+            titleCallback: (title) {
+          dashboardTitleValue.value = title;
+        }, controllerCallback: (controller) {
+          _dashboardController = controller;
+          if (widget._controller != null) {
+            widget._controller!._setDashboardController(controller);
+            controller.hasRightLayout.addListener(() {
+              hasRightLayout.value = controller.hasRightLayout.value;
+            });
+            controller.rightLayoutOpened.addListener(() {
+              if (controller.rightLayoutOpened.value) {
+                rightLayoutMenuController.forward();
+              } else {
+                rightLayoutMenuController.reverse();
               }
-            },
-          );
-        },
-      ),
-    );
+            });
+          }
+        }));
   }
 }

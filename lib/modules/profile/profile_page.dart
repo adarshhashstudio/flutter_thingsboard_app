@@ -56,7 +56,7 @@ class _ProfilePageState extends TbPageState<ProfilePage> {
               IconButton(
                   icon: Icon(Icons.logout),
                   onPressed: () {
-                    tbContext.logout();
+                    tbClient.logout();
                   })
           ],
         ),

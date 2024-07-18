@@ -93,7 +93,7 @@ class _TwoPageViewState extends State<TwoPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return PreloadPageView(
+    return new PreloadPageView(
       children: _pages,
       physics: NeverScrollableScrollPhysics(),
       reverse: _reverse,

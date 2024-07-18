@@ -15,50 +15,41 @@ class _EntitiesGridState<T, P> extends BaseEntitiesState<T, P> {
 
   @override
   Widget pagedViewBuilder(BuildContext context) {
-    final heading = widget.buildHeading(context);
-    final gridChildAspectRatio = widget.gridChildAspectRatio() ?? 156 / 150;
-
-    final slivers = <Widget>[];
+    var heading = widget.buildHeading(context);
+    var gridChildAspectRatio = widget.gridChildAspectRatio() ?? 156 / 150;
+    List<Widget> slivers = [];
     if (heading != null) {
-      slivers.add(
-        SliverPadding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-          sliver: SliverToBoxAdapter(child: heading),
-        ),
-      );
+      slivers.add(SliverPadding(
+          padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+          sliver: SliverToBoxAdapter(child: heading)));
     }
-
-    slivers.add(
-      SliverPadding(
+    slivers.add(SliverPadding(
         padding: EdgeInsets.all(16),
         sliver: PagedSliverGrid(
-          showNewPageProgressIndicatorAsGridChild: false,
-          showNewPageErrorIndicatorAsGridChild: false,
-          showNoMoreItemsIndicatorAsGridChild: false,
-          pagingController: pagingController,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: gridChildAspectRatio,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            crossAxisCount: 2,
-          ),
-          builderDelegate: PagedChildBuilderDelegate<T>(
-            itemBuilder: (context, item, index) => EntityGridCard<T>(
-              item,
-              key: widget.getKey(item),
-              entityCardWidgetBuilder: widget.buildEntityGridCard,
-              onEntityTap: widget.onEntityTap,
-              settings: widget.entityGridCardSettings(item),
+            showNewPageProgressIndicatorAsGridChild: false,
+            showNewPageErrorIndicatorAsGridChild: false,
+            showNoMoreItemsIndicatorAsGridChild: false,
+            pagingController: pagingController,
+            // padding: EdgeInsets.all(16),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: gridChildAspectRatio,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              crossAxisCount: 2,
             ),
-            firstPageProgressIndicatorBuilder:
-                firstPageProgressIndicatorBuilder,
-            newPageProgressIndicatorBuilder: newPageProgressIndicatorBuilder,
-            noItemsFoundIndicatorBuilder: noItemsFoundIndicatorBuilder,
-          ),
-        ),
-      ),
-    );
-
+            builderDelegate: PagedChildBuilderDelegate<T>(
+                itemBuilder: (context, item, index) => EntityGridCard<T>(
+                      item,
+                      key: widget.getKey(item),
+                      entityCardWidgetBuilder: widget.buildEntityGridCard,
+                      onEntityTap: widget.onEntityTap,
+                      settings: widget.entityGridCardSettings(item),
+                    ),
+                firstPageProgressIndicatorBuilder:
+                    firstPageProgressIndicatorBuilder,
+                newPageProgressIndicatorBuilder:
+                    newPageProgressIndicatorBuilder,
+                noItemsFoundIndicatorBuilder: noItemsFoundIndicatorBuilder))));
     return CustomScrollView(slivers: slivers);
   }
 }

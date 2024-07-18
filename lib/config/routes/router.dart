@@ -1,7 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:thingsboard_app/core/auth/auth_routes.dart';
-import 'package:thingsboard_app/core/auth/noauth/routes/noauth_routes.dart';
 import 'package:thingsboard_app/core/context/tb_context.dart';
 import 'package:thingsboard_app/core/init/init_routes.dart';
 import 'package:thingsboard_app/modules/alarm/alarm_routes.dart';
@@ -11,10 +10,8 @@ import 'package:thingsboard_app/modules/customer/customer_routes.dart';
 import 'package:thingsboard_app/modules/dashboard/dashboard_routes.dart';
 import 'package:thingsboard_app/modules/device/device_routes.dart';
 import 'package:thingsboard_app/modules/home/home_routes.dart';
-import 'package:thingsboard_app/modules/notification/routes/notification_routes.dart';
 import 'package:thingsboard_app/modules/profile/profile_routes.dart';
 import 'package:thingsboard_app/modules/tenant/tenant_routes.dart';
-import 'package:thingsboard_app/modules/url/url_routes.dart';
 import 'package:thingsboard_app/utils/ui_utils_routes.dart';
 
 class ThingsboardAppRouter {
@@ -30,7 +27,6 @@ class ThingsboardAppRouter {
         body: Center(child: Text('Route not defined: ${settings!.name}')),
       );
     });
-
     InitRoutes(_tbContext).registerRoutes();
     AuthRoutes(_tbContext).registerRoutes();
     UiUtilsRoutes(_tbContext).registerRoutes();
@@ -43,9 +39,6 @@ class ThingsboardAppRouter {
     AuditLogsRoutes(_tbContext).registerRoutes();
     CustomerRoutes(_tbContext).registerRoutes();
     TenantRoutes(_tbContext).registerRoutes();
-    NotificationRoutes(_tbContext).registerRoutes();
-    UrlPageRoutes(_tbContext).registerRoutes();
-    NoAuthRoutes(_tbContext).registerRoutes();
   }
 
   TbContext get tbContext => _tbContext;
