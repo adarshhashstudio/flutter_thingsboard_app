@@ -59,28 +59,35 @@ class _TbProgressIndicatorState extends State<TbProgressIndicator>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SvgPicture.asset(ThingsboardImage.thingsboardCenter,
-            height: widget.size,
-            width: widget.size,
-            colorFilter: ColorFilter.mode(
-                widget._getValueColor(context), BlendMode.srcIn 
-            )),
-        AnimatedBuilder(
-          animation: _rotation,
-          child: SvgPicture.asset(ThingsboardImage.thingsboardOuter,
-              height: widget.size,
-              width: widget.size,
-              colorFilter: ColorFilter.mode(
-                  widget._getValueColor(context), BlendMode.srcIn 
-              )),
-          builder: (BuildContext context, Widget? child) {
-            return Transform.rotate(
-                angle: _rotation.value * pi * 2, child: child);
-          },
-        )
-      ],
-    );
+    return  SvgPicture.asset(ThingsboardImage.polwaxLoader,
+            height: 100,
+            width: 100,
+            // colorFilter: ColorFilter.mode(
+            //     widget._getValueColor(context), BlendMode.srcIn 
+            // )
+            );
+    // Stack(
+    //   children: [
+    //     SvgPicture.asset(ThingsboardImage.polwaxLoader,
+    //         height: widget.size,
+    //         width: widget.size,
+    //         colorFilter: ColorFilter.mode(
+    //             widget._getValueColor(context), BlendMode.srcIn 
+    //         )),
+    //     AnimatedBuilder(
+    //       animation: _rotation,
+    //       child: SvgPicture.asset(ThingsboardImage.polwaxLoader,
+    //           height: widget.size,
+    //           width: widget.size,
+    //           colorFilter: ColorFilter.mode(
+    //               widget._getValueColor(context), BlendMode.srcIn 
+    //           )),
+    //       builder: (BuildContext context, Widget? child) {
+    //         return Transform.rotate(
+    //             angle: _rotation.value * pi * 2, child: child);
+    //       },
+    //     )
+    //   ],
+    // );
   }
 }

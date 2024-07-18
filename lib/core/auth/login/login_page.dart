@@ -54,11 +54,12 @@ class _LoginPageState extends TbPageState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xfffDD400),
         resizeToAvoidBottomInset: false,
         body: Stack(children: [
-          LoginPageBackground(),
-          Positioned.fill(child: LayoutBuilder(
+          // LoginPageBackground(),
+          // Positioned.fill(child: 
+          LayoutBuilder(
             builder: (context, constraints) {
               return SingleChildScrollView(
                   padding: EdgeInsets.fromLTRB(24, 71, 24, 24),
@@ -69,10 +70,13 @@ class _LoginPageState extends TbPageState<LoginPage> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              Row(children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
                                 SvgPicture.asset(
                                     ThingsboardImage.thingsBoardWithTitle,
-                                    height: 25,
+                                    height: 80,
+                                    width: 80,
                                     colorFilter: ColorFilter.mode(
                                         Theme.of(context).primaryColor, BlendMode.srcIn),
                                     semanticsLabel:
@@ -125,8 +129,18 @@ class _LoginPageState extends TbPageState<LoginPage> {
                                               errorText:
                                                   '${S.of(context).emailInvalidText}')
                                         ]),
+                                        
                                         decoration: InputDecoration(
-                                            border: OutlineInputBorder(),
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide(width: 2,color: Colors.white)
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(width: 2,color: Colors.white)
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(width: 2,color: Colors.white)
+                                            ),
+                                            labelStyle: TextStyle(color: Colors.black),
                                             labelText:
                                                 '${S.of(context).email}'),
                                       ),
@@ -157,7 +171,16 @@ class _LoginPageState extends TbPageState<LoginPage> {
                                                               .value;
                                                     },
                                                   ),
-                                                  border: OutlineInputBorder(),
+                                                   border: OutlineInputBorder(
+                                              borderSide: BorderSide(width: 2,color: Colors.white)
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(width: 2,color: Colors.white)
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(width: 2,color: Colors.white)
+                                            ),
+                                            labelStyle: TextStyle(color: Colors.black),
                                                   labelText:
                                                       '${S.of(context).password}'),
                                             );
@@ -198,7 +221,8 @@ class _LoginPageState extends TbPageState<LoginPage> {
                             ]),
                       )));
             },
-          )),
+          ),
+          // ),
           ValueListenableBuilder<bool>(
               valueListenable: _isLoginNotifier,
               builder: (BuildContext context, bool loading, child) {
