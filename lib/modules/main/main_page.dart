@@ -174,6 +174,11 @@ class _MainPageState extends TbPageState<MainPage>
             bottomNavigationBar: ValueListenableBuilder<int>(
               valueListenable: _currentIndexNotifier,
               builder: (context, index, child) => BottomNavigationBar(
+                backgroundColor: Color(0xfffDD400),
+                selectedItemColor: Color(0xff01325c),
+                unselectedItemColor: Color(0xff01325c).withOpacity(0.8),
+                unselectedLabelStyle: TextStyle(color:Color(0xff01325c)),
+                selectedLabelStyle: TextStyle(color:Color(0xff01325c)),
                   type: BottomNavigationBarType.fixed,
                   currentIndex: index,
                   onTap: (int index) =>

@@ -18,7 +18,7 @@ void main() {
     // Verify that our counter starts at 0.
     expect(find.byWidgetPredicate((widget) {
       if (widget is MaterialApp) {
-        return widget.title == 'ThingsBoard';
+        return widget.title == 'Polwax CLoudDash 360';
       }
       return false;
     }), findsOneWidget);

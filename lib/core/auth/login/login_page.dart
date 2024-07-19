@@ -12,6 +12,7 @@ import 'package:thingsboard_app/core/context/tb_context_widget.dart';
 import 'package:thingsboard_app/generated/l10n.dart';
 import 'package:thingsboard_app/widgets/tb_progress_indicator.dart';
 import 'package:thingsboard_client/thingsboard_client.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'login_page_background.dart';
 
@@ -58,7 +59,7 @@ class _LoginPageState extends TbPageState<LoginPage> {
         resizeToAvoidBottomInset: false,
         body: Stack(children: [
           // LoginPageBackground(),
-          // Positioned.fill(child: 
+          // Positioned.fill(child:
           LayoutBuilder(
             builder: (context, constraints) {
               return SingleChildScrollView(
@@ -71,21 +72,25 @@ class _LoginPageState extends TbPageState<LoginPage> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                        ThingsboardImage.thingsBoardWithTitle,
+                                        height: 80,
+                                        width: 80,
+                                        colorFilter: ColorFilter.mode(
+                                            Theme.of(context).primaryColor,
+                                            BlendMode.srcIn),
+                                        semanticsLabel:
+                                            '${S.of(context).logoDefaultValue}')
+                                  ]),
+                              SizedBox(height: 32),
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                SvgPicture.asset(
-                                    ThingsboardImage.thingsBoardWithTitle,
-                                    height: 80,
-                                    width: 80,
-                                    colorFilter: ColorFilter.mode(
-                                        Theme.of(context).primaryColor, BlendMode.srcIn),
-                                    semanticsLabel:
-                                        '${S.of(context).logoDefaultValue}')
-                              ]),
-                              SizedBox(height: 32),
-                              Row(children: [
                                 Text('${S.of(context).loginNotification}',
                                     style: TextStyle(
+                                      color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 28,
                                         height: 36 / 28))
@@ -129,18 +134,21 @@ class _LoginPageState extends TbPageState<LoginPage> {
                                               errorText:
                                                   '${S.of(context).emailInvalidText}')
                                         ]),
-                                        
                                         decoration: InputDecoration(
                                             border: OutlineInputBorder(
-                                              borderSide: BorderSide(width: 2,color: Colors.white)
-                                            ),
+                                                borderSide: BorderSide(
+                                                    width: 2,
+                                                    color: Colors.white)),
                                             focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(width: 2,color: Colors.white)
-                                            ),
+                                                borderSide: BorderSide(
+                                                    width: 2,
+                                                    color: Colors.white)),
                                             enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(width: 2,color: Colors.white)
-                                            ),
-                                            labelStyle: TextStyle(color: Colors.black),
+                                                borderSide: BorderSide(
+                                                    width: 2,
+                                                    color: Colors.white)),
+                                            labelStyle:
+                                                TextStyle(color: Colors.black),
                                             labelText:
                                                 '${S.of(context).email}'),
                                       ),
@@ -171,16 +179,26 @@ class _LoginPageState extends TbPageState<LoginPage> {
                                                               .value;
                                                     },
                                                   ),
-                                                   border: OutlineInputBorder(
-                                              borderSide: BorderSide(width: 2,color: Colors.white)
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(width: 2,color: Colors.white)
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(width: 2,color: Colors.white)
-                                            ),
-                                            labelStyle: TextStyle(color: Colors.black),
+                                                  border: OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          width: 2,
+                                                          color: Colors.white)),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  width: 2,
+                                                                  color: Colors
+                                                                      .white)),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                                  width: 2,
+                                                                  color: Colors
+                                                                      .white)),
+                                                  labelStyle: TextStyle(
+                                                      color: Colors.black),
                                                   labelText:
                                                       '${S.of(context).password}'),
                                             );
@@ -201,7 +219,8 @@ class _LoginPageState extends TbPageState<LoginPage> {
                                               .colorScheme
                                               .primary,
                                           letterSpacing: 1,
-                                          fontSize: 12,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
                                           height: 16 / 12),
                                     ),
                                   )
@@ -209,8 +228,9 @@ class _LoginPageState extends TbPageState<LoginPage> {
                               ),
                               Spacer(),
                               ElevatedButton(
-                                child: Text('${S.of(context).login}'),
+                                child: Text('${S.of(context).login}', style: TextStyle(color: Colors.white),),
                                 style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xff02325c),
                                     padding:
                                         EdgeInsets.symmetric(vertical: 16)),
                                 onPressed: () {
@@ -221,6 +241,34 @@ class _LoginPageState extends TbPageState<LoginPage> {
                             ]),
                       )));
             },
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 0.04,
+              color: Colors.green,
+              child: Row(
+                children: [
+                  Expanded(child: SizedBox()),
+                  GestureDetector(
+                    onTap: () {
+                      launchUrlString('http://www.global.polwax.it/');
+                    },
+                    child: Text(
+                      'Contact Us',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          height: 36 / 28),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.04,
+                  )
+                ],
+              ),
+            ),
           ),
           // ),
           ValueListenableBuilder<bool>(

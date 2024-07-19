@@ -132,6 +132,7 @@ class _ChangePasswordPageState extends TbContextState<ChangePasswordPage> {
                           SizedBox(height: 24),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xffFdd400),
                                   padding: EdgeInsets.all(16),
                                   alignment: Alignment.centerLeft),
                               onPressed: () {
@@ -139,7 +140,7 @@ class _ChangePasswordPageState extends TbContextState<ChangePasswordPage> {
                               },
                               child: Center(
                                   child:
-                                      Text('${S.of(context).changePassword}')))
+                                      Text('${S.of(context).changePassword}', style: TextStyle(color: Color(0xff01325c),),)))
                         ]),
                   ))),
             ),

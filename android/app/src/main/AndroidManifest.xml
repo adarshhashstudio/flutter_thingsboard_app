@@ -25,7 +25,7 @@
     </queries>
     <application
         android:requestLegacyExternalStorage="true"
-        android:label="ThingsBoard App"
+        android:label="Polwax CLoudDash 360"
         android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/launcher_icon">
         <activity

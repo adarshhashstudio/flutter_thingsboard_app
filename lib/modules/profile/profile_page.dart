@@ -102,8 +102,9 @@ class _ProfilePageState extends TbPageState<ProfilePage> {
                                 labelText: '${S.of(context).lastNameUpper}'),
                           ),
                           SizedBox(height: 24),
-                          OutlinedButton(
-                              style: OutlinedButton.styleFrom(
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xffFdd400),
                                   padding: EdgeInsets.all(16),
                                   alignment: Alignment.centerLeft),
                               onPressed: () {
@@ -111,7 +112,8 @@ class _ProfilePageState extends TbPageState<ProfilePage> {
                               },
                               child: Center(
                                   child:
-                                      Text('${S.of(context).changePassword}')))
+                                      Text('${S.of(context).changePassword}', style: TextStyle(color: Color(0xff01325c),),)))
+                          
                         ]),
                   ))),
             ),
