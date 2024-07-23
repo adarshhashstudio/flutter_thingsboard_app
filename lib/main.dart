@@ -1,4 +1,6 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:thingsboard_app/constants/assets_path.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 import 'package:flutter/material.dart';
@@ -181,5 +183,25 @@ class ThingsboardAppState extends State<ThingsboardApp>
               home: MainDashboardPage(appRouter.tbContext,
                   controller: _mainDashboardPageController),
             )));
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        backgroundColor: Color(0xfffDD400),
+        body: Center(
+          child:  SvgPicture.asset(
+                                        ThingsboardImage.polwaxLogin,                       
+                                        height: 180,
+                                        width: 180,
+                                        colorFilter: ColorFilter.mode(
+                                            Theme.of(context).primaryColor,
+                                            BlendMode.srcIn),
+                                        )
+        ),
+    
+    );
   }
 }
