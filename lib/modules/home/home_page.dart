@@ -45,12 +45,12 @@ class _HomePageState extends TbContextState<HomePage>
         elevation: dashboardState ? 0 : 8,
         title: Center(
             child: Container(
-                height: 80,
-                width: 80,
+                height: 180,
+                width: 180,
                 child: SvgPicture.asset(ThingsboardImage.thingsBoardWithTitle,
-                    colorFilter: ColorFilter.mode(
-                        Theme.of(context).primaryColor, BlendMode.srcIn 
-                    ),
+                    // colorFilter: ColorFilter.mode(
+                    //     Theme.of(context).primaryColor, BlendMode.srcIn 
+                    // ),
                     semanticsLabel: 'ThingsBoard Logo'))),
         actions: [
           if (tbClient.isSystemAdmin())

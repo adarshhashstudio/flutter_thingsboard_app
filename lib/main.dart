@@ -133,7 +133,7 @@ class ThingsboardAppState extends State<ThingsboardApp>
         statusBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.light));
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

@@ -75,9 +75,9 @@ class _LoginPageState extends TbPageState<LoginPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SvgPicture.asset(
-                                        ThingsboardImage.thingsBoardWithTitle,
-                                        height: 80,
-                                        width: 80,
+                                        ThingsboardImage.polwaxLogin,                       
+                                        height: 180,
+                                        width: 180,
                                         colorFilter: ColorFilter.mode(
                                             Theme.of(context).primaryColor,
                                             BlendMode.srcIn),
@@ -263,9 +263,7 @@ class _LoginPageState extends TbPageState<LoginPage> {
                           height: 36 / 28),
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.04,
-                  )
+                  Expanded(child: SizedBox()),
                 ],
               ),
             ),
