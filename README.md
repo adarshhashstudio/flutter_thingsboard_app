@@ -14,3 +14,19 @@ Build your own IoT mobile application **with minimum coding efforts**
 To be familiar with common app features try out our ThingsBoard Live mobile application available on Google Play and App Store
 - [Get it on Google Play](https://play.google.com/store/apps/details?id=org.thingsboard.demo.app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 - [Download on the App Store](https://apps.apple.com/us/app/thingsboard-live/id1594355695?itsct=apps_box_badge&amp;itscg=30200)
+
+key.properties under android/
+storePassword=polwax
+keyPassword=polwax
+keyAlias=polwaxalias
+storeFile=/Users/hstpl_lap_266/Documents/projects/flutter_thingsboard_app/android/app/polwaxaliaskeystore.jks
+
+# Alias - polwaxalias
+# Keystore - polwaxaliaskeystore
+# Keystore password - polwax
+# Firstname lastname - Polwax Kelfos
+# Organisational Unit - Kelfos
+# Organisation - Kleffs
+# City - Delhi
+# State - Haryana
+# Country code - IN
