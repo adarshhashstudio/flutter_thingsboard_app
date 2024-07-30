@@ -259,6 +259,7 @@ class _LoginPageState extends TbPageState<LoginPage> {
                       'Contact Us',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                           fontSize: 14,
                           height: 36 / 28),
                     ),
