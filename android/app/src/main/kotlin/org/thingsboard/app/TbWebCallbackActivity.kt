@@ -1,4 +1,4 @@
-package org.thingsboard.app
+package com.kelfos.app
 
 import android.app.Activity
 import android.net.Uri

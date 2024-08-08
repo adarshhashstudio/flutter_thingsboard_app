@@ -65,7 +65,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="org.thingsboard.app.auth" />
+                <data android:scheme="com.kelfos.app.auth" />
             </intent-filter>
         </activity>
 

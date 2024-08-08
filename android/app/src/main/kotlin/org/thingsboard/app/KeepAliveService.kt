@@ -1,4 +1,4 @@
-package org.thingsboard.app
+package com.kelfos.app
 
 import android.app.Service
 import android.content.Intent
